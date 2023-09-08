@@ -62,13 +62,18 @@ public final class SkriptAdvancements extends JavaPlugin implements Listener {
             e.printStackTrace();
         }
 
-        log("§7[§bSkript-Advancements§7] §fChecking for updates...");
-        if (getDescription().getVersion().equals(getVersion())) {
-            log("§7[§bSkript-Advancements§7] §aNo updates found!");
-        } else {
-            log("§7[§bSkript-Advancements§7] §cYou are running an §noutdated version§r §cof skript-advancements!");
-            updated = false;
-        }
+
+        log("§7[§bSkript-Advancements§7] §6You are running unofficial version of skript-advancements!");
+
+        // Removed because original author is no longer updating the plugin
+        // - LukynkaCZE
+
+//        if (getDescription().getVersion().equals(getVersion())) {
+//            log("§7[§bSkript-Advancements§7] §aNo updates found!");
+//        } else {
+//            log("§7[§bSkript-Advancements§7] §cYou are running an §noutdated version§r §cof skript-advancements!");
+//            updated = false;
+//        }
     }
 
     @Override
@@ -87,22 +92,25 @@ public final class SkriptAdvancements extends JavaPlugin implements Listener {
     private void onJoin(PlayerJoinEvent event) {
         if (!updated) {
             if (event.getPlayer().isOp() && !joined.contains(event.getPlayer().getUniqueId())) {
-                event.getPlayer().sendMessage("§7[§bSkript-Advancements§7] §cYou are running an §noutdated version§r §cof skript-advancements!");
+//                event.getPlayer().sendMessage("§7[§bSkript-Advancements§7] §cYou are running an §noutdated version§r §cof skript-advancements!");
                 joined.add(event.getPlayer().getUniqueId());
             }
         }
     }
 
-    private String getVersion() {
-        try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=96702").openStream(); Scanner scanner = new Scanner(inputStream)) {
-            if (scanner.hasNext()) {
-                return scanner.next();
-            }
-        } catch (IOException exception) {
-            this.getLogger().info("Unable to check for updates: " + exception.getMessage());
-        }
-        return "";
-    }
+    // Removed because original author is no longer updating the plugin
+    // - LukynkaCZE
+
+//    private String getVersion() {
+//        try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=96702").openStream(); Scanner scanner = new Scanner(inputStream)) {
+//            if (scanner.hasNext()) {
+//                return scanner.next();
+//            }
+//        } catch (IOException exception) {
+//            this.getLogger().info("Unable to check for updates: " + exception.getMessage());
+//        }
+//        return "";
+//    }
 
     private void log(String text) {
         getServer().getConsoleSender().sendMessage(text);
